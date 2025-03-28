@@ -30,17 +30,40 @@ This API is designed for:
 ---
 
 ## 🗂 Project Structure
++--------------------------+
+|     Client / User        |
+|  (Sends English Text)    |
++-----------+--------------+
+            |
+            | POST /translate
+            v
++-----------+--------------+
+|     FastAPI Server       |
+|  - Handles requests      |
+|  - Tracks metrics        |
++-----------+--------------+
+            |
+     +------+------+
+     |             |
+     v             v
++------------+  +----------------------+
+| Google     |  | Hugging Face M2M100  |
+| Translate  |  | - Reference Gen.     |
+| - Main     |  | - BLEU Score         |
+| Translation|  | - Perplexity Score   |
++------------+  +----------------------+
+     |                  |
+     +--------+---------+
+              |
+              v
+     +------------------------+
+     |  Response to Client    |
+     |  - Original Text       |
+     |  - Translated Text     |
+     |  - Reference Text      |
+     |  - BLEU Score          |
+     |  - Perplexity Score    |
+     +------------------------+
 
-+------------+        POST /translate        +------------------------+
-|            | ---------------------------> |                        |
-|  USER/DEV  |                              |  FastAPI Translation    |
-| (sends text)                              |        Server           |
-|            | <--------------------------- |                        |
-+------------+         JSON Response         +------------------------+
-                                                |         |
-                                   +------------+         +-------------+
-                                   |                                  |
-                           Google Translate                 HuggingFace M2M100
-                          (Translation output)              (Reference + Perplexity)
 
 
