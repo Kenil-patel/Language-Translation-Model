@@ -29,7 +29,9 @@ This API is designed for:
 
 ---
 
-## 🗂 Project Structure
+## 🔁 How It Works – Diagram
+
+```plaintext
 +--------------------------+
 |     Client / User        |
 |  (Sends English Text)    |
@@ -64,6 +66,3 @@ This API is designed for:
      |  - BLEU Score          |
      |  - Perplexity Score    |
      +------------------------+
-
-
-
