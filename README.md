@@ -34,40 +34,24 @@ This project is a **Real-Time Translation Web App** with a FastAPI backend and S
 
 # 🔁 How It Works – Architecture
 
-# plaintext
-+--------------------------+
-|     Client / User        |
-|  (Sends English Text)    |
-+-----------+--------------+
-            |
-            |  POST /translate
-            v
-+-----------+--------------+
-|     FastAPI Server       |
-|  - Handles requests      |
-|  - Validates input       |
-|  - Tracks metrics        |
-+-----------+--------------+
-            |
-     +------+------+
-     |             |
-     v             v
-+------------+  +----------------------+
-| Google     |  | Hugging Face M2M100  |
-| Translate  |  | - Reference Gen.     |
-| - Main     |  | - BLEU Score         |
-| Translation|  | - Perplexity Score   |
-+------------+  +----------------------+
-     |                  |
-     +--------+---------+
-              |
-              v
-     +------------------------+
-     |  Response to Client    |
-     |  - Original Text       |
-     |  - Translated Text     |
-     |  - Reference Text      |
-     |  - BLEU Score          |
-     |  - Perplexity Score    |
-     +------------------------+
+Client / User
+└── Sends English Text
+    └── POST /translate
+        └── FastAPI Server
+            ├── Handles requests
+            ├── Validates input
+            ├── Tracks metrics
+            └── Translation Process
+                ├── Google Translate (Main Translation)
+                └── Hugging Face M2M100
+                    ├── Reference Generation
+                    ├── BLEU Score Calculation
+                    └── Perplexity Score Calculation
+                        └── Response to Client
+                            ├── Original Text
+                            ├── Translated Text
+                            ├── Reference Text
+                            ├── BLEU Score
+                            └── Perplexity Score
+
 
